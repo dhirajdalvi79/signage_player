@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:signage_player/core/dio_instance.dart';
 import 'package:signage_player/features/media_playback/data/media_model.dart';
@@ -14,12 +15,16 @@ class MediaRepoImpl implements MediaRepo {
   final MockResponse mock;
   final DioInstance dio;
   @override
-  Future<List<MediaEntity>> getMedia() async {
-    final data = await mock.getMediaDataMock();
-    Map<String, dynamic> parsed = jsonDecode(data);
-    final media = await downloadAll(Result.fromJson(parsed));
+  Future<Either<Exception, List<MediaEntity>>> getMedia() async {
+    try {
+      final data = await mock.getMediaDataMock();
+      Map<String, dynamic> parsed = jsonDecode(data);
+      final media = await downloadAll(Result.fromJson(parsed));
 
-    return media;
+      return right(media);
+    } catch (e) {
+      return left(Exception(e.toString()));
+    }
   }
 
   Future<List<MediaEntity>> downloadAll(Result data) async {

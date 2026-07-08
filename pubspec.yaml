@@ -36,6 +36,9 @@ dependencies:
   cupertino_icons: ^1.0.8
   dio: ^5.10.0
   path_provider: ^2.1.6
+  get_it: ^9.2.1
+  fpdart: ^1.2.0
+  video_player: ^2.11.1
 
 dev_dependencies:
   flutter_test:
