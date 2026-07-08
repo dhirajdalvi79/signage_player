@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:signage_player/core/service_locator.dart';
 import 'package:signage_player/features/media_playback/domain/media_repo.dart';
 import 'package:signage_player/features/media_playback/presentation/playback_screen.dart';
+import 'package:signage_player/features/shared/components/error_dialog.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -20,29 +21,16 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _startDownload() async {
     final response = await ServiceLocator().sl<MediaRepo>().getMedia();
     response.fold(
-      (error) => _showDownloadError(error.toString()),
+      (error) => showError(
+        message: error.toString(),
+        context: context,
+        onDone: () {
+          Navigator.of(context).pop();
+          _startDownload();
+        },
+      ),
       (data) => Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (_) => PlaybackScreen(mediaItems: data)),
-      ),
-    );
-  }
-
-  void _showDownloadError(String message) {
-    showDialog<void>(
-      context: context,
-      barrierDismissible: false,
-      builder: (_) => AlertDialog(
-        title: const Text('Download Failed'),
-        content: Text(message),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              _startDownload(); // Retry on error.
-            },
-            child: const Text('Retry'),
-          ),
-        ],
       ),
     );
   }
