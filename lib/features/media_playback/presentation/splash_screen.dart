@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
     final response = await ServiceLocator().sl<MediaRepo>().getMedia();
     response.fold(
       (error) => showError(
-        message: error.toString(),
+        message: error.message,
         context: context,
         onDone: () {
           Navigator.of(context).pop();

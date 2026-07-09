@@ -30,7 +30,6 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
       await _controller.initialize();
       if (!mounted) return;
       setState(() => _isInitialized = true);
-
       await _controller.play();
     } catch (e) {
       'VideoPlayerWidget: failed to initialise ${widget.localPath}: $e'

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:signage_player/core/constants.dart';
+import 'package:signage_player/core/extensions.dart';
 
 mixin PlaybackDurationMixin<T extends StatefulWidget> on State<T> {
   int currentIndex = 0;
@@ -11,6 +12,7 @@ mixin PlaybackDurationMixin<T extends StatefulWidget> on State<T> {
   @override
   void initState() {
     super.initState();
+    'INDEX: $currentIndex'.logInfo();
     _scheduleNext();
   }
 
@@ -27,6 +29,7 @@ mixin PlaybackDurationMixin<T extends StatefulWidget> on State<T> {
     setState(() {
       currentIndex = (currentIndex + 1) % totalItems;
     });
+    'INDEX: $currentIndex'.logInfo();
     _scheduleNext();
   }
 

@@ -9,7 +9,7 @@ void showError({
     context: context,
     barrierDismissible: false,
     builder: (_) => AlertDialog(
-      title: const Text('Download Failed'),
+      title: const Text('Error'),
       content: Text(message),
       actions: [TextButton(onPressed: onDone, child: const Text('Retry'))],
     ),

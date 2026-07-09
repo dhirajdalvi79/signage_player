@@ -13,7 +13,7 @@ class ImageView extends StatelessWidget {
     return SizedBox.expand(
       child: Image.file(
         File(localPath),
-        fit: BoxFit.cover,
+        fit: BoxFit.contain,
 
         frameBuilder: (context, child, frame, _) {
           if (frame == null) return const ColoredBox(color: Colors.black);

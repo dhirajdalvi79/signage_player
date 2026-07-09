@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:signage_player/core/app_exception.dart';
 import 'package:signage_player/core/dio_instance.dart';
 import 'package:signage_player/features/media_playback/data/media_model.dart';
 import 'package:signage_player/features/media_playback/data/response_data.dart';
@@ -15,15 +16,14 @@ class MediaRepoImpl implements MediaRepo {
   final MockResponse mock;
   final DioInstance dio;
   @override
-  Future<Either<Exception, List<MediaEntity>>> getMedia() async {
+  Future<Either<AppException, List<MediaEntity>>> getMedia() async {
     try {
       final data = await mock.getMediaDataMock();
       Map<String, dynamic> parsed = jsonDecode(data);
       final media = await downloadAll(Result.fromJson(parsed));
-
       return right(media);
     } catch (e) {
-      return left(Exception(e.toString()));
+      return left(AppException('Download Failed'));
     }
   }
 

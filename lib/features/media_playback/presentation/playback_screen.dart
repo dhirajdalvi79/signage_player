@@ -26,12 +26,12 @@ class _PlaybackScreenState extends State<PlaybackScreen>
     return Scaffold(
       body: switch (currentItem.type) {
         MediaType.image => ImageView(
-          key: ValueKey('image_$currentItem'),
+          key: ValueKey('image_${currentItem.localPath}_$currentIndex'),
           localPath: currentItem.localPath ?? '',
         ),
 
         MediaType.video => VideoPlayerWidget(
-          key: ValueKey('video_$currentItem'),
+          key: ValueKey('video_${currentItem.localPath}_$currentIndex'),
           localPath: currentItem.localPath ?? '',
         ),
       },
