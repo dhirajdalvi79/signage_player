@@ -62,3 +62,8 @@ This project follows **Clean Architecture**.
 | [get_it](https://pub.dev/packages/get_it) | `^9.2.1` | Dependency injection |
 | [fpdart](https://pub.dev/packages/fpdart) | `^1.2.0` | Functional programming |
 | [video_player](https://pub.dev/packages/video_player) | `^2.11.1` | Video playback |
+
+
+## Note
+
+The content can be viewed in any orientation of device
