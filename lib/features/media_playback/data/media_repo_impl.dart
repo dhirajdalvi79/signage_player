@@ -30,6 +30,7 @@ class MediaRepoImpl implements MediaRepo {
   Future<List<MediaEntity>> downloadAll(Result data) async {
     final Directory cacheDir = await getApplicationSupportDirectory();
 
+    // Concurrently calling download
     final List<MediaEntity> items = await Future.wait(
       data.result.map((element) {
         return _downloadItem(
@@ -54,6 +55,7 @@ class MediaRepoImpl implements MediaRepo {
     final String fileName = 'signage_$name.$extension';
     final String savePath = '${cacheDir.path}/$fileName';
 
+    //Checking if the file is already exists, download will be skipped if the file exists
     if (!File(savePath).existsSync()) {
       await dio.dio.download(
         url,

@@ -1,3 +1,5 @@
+// Entity to be used in UI
+
 enum MediaType { image, video }
 
 class MediaEntity {

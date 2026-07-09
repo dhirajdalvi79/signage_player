@@ -1,5 +1,6 @@
 import 'package:signage_player/features/media_playback/domain/media_entity.dart';
 
+//Data Model
 class Result {
   Result({required this.result});
 

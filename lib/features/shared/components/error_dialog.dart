@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 void showError({
   required String message,
   required BuildContext context,
-  VoidCallback? onDone,
+  VoidCallback? onRetry,
 }) {
   showDialog<void>(
     context: context,
@@ -11,7 +11,7 @@ void showError({
     builder: (_) => AlertDialog(
       title: const Text('Error'),
       content: Text(message),
-      actions: [TextButton(onPressed: onDone, child: const Text('Retry'))],
+      actions: [TextButton(onPressed: onRetry, child: const Text('Retry'))],
     ),
   );
 }

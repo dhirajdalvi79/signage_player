@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
       (error) => showError(
         message: error.message,
         context: context,
-        onDone: () {
+        onRetry: () {
           Navigator.of(context).pop();
           _startDownload();
         },
